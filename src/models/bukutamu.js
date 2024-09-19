@@ -68,19 +68,9 @@ const selectBukuById = (id) => {
 };
 
 // Function to update an entry by ID
-const updateBuku = (id, nama_tamu, no_hp, jabatan, unit_kerja, tujuan, yang_dituju, keterangan) => {
-    return new Promise((resolve, reject) => {
-        const query = `
-            UPDATE bukutamu SET nama_tamu = ?, no_hp = ?, jabatan = ?, unit_kerja = ?, tujuan = ?, yang_dituju = ?, keterangan = ? WHERE id = ?
-        `;
-        db.query(query, [nama_tamu, no_hp, jabatan, unit_kerja, tujuan, yang_dituju, keterangan, id], (err, result) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(result);
-            }
-        });
-    });
+const updateBukuTamu = (id, nama_tamu, no_hp, jabatan, unit_kerja, tujuan, yang_dituju, keterangan, callback) => {
+    const q = "UPDATE bukutamu SET nama_tamu=?, no_hp=?, jabatan=?, unit_kerja=?, tujuan=?, yang_dituju=?, keterangan=? WHERE id = ?";
+    db.query(q, [nama_tamu, no_hp, jabatan, unit_kerja, tujuan, yang_dituju, keterangan, id], callback);
 };
 
 const deleteBuku = (id) => {
@@ -100,7 +90,7 @@ module.exports = {
     createBukuTable,
     insertBuku,
     selectBukuById,
-    updateBuku,
+    updateBukuTamu,
     deleteBuku,
     selectBuku
 };

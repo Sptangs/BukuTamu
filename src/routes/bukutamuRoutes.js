@@ -4,7 +4,8 @@ const bukutamuController = require("../controllers/bukutamuController");
 
 
 router.post("/bukutamu", bukutamuController.storeBuku);       
-router.get("/bukutamu", bukutamuController.index);            
+router.get("/bukutamu", bukutamuController.index);      
+router.put("/bukutamu/:id", bukutamuController.updateBukutamu);
 router.delete("/bukutamu/:id", bukutamuController.destroyBuku); 
 router.get("/bukutamu/:id", bukutamuController.showBuku);  
 

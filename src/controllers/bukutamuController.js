@@ -38,6 +38,22 @@ const destroyBuku = async (req, res) => {
     }
 };
 
+const updateBukutamu = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const updatedData = req.body;
+
+        const updatedBukutamu = await Bukutamu.findByIdAndUpdate(id, updatedData, { new: true });
+        if (!updatedBukutamu) {
+            return res.status(404).json({ message: 'Bukutamu entry not found' });
+        }
+
+        res.status(200).json(updatedBukutamu);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
 const index = async (req, res) => {
     try {
         const result = await bukutamu.selectBuku();
@@ -65,4 +81,5 @@ module.exports = {
     logout,
     index,
     destroyBuku,
+    updateBukutamu
 };
